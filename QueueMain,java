@@ -1,0 +1,62 @@
+import java.util.*;
+
+public class QueueMain{
+
+	public static void main(String[] args){
+		  Queue q=new Queue();
+          System.out.println("enter numbers to enter in queue");
+          Scanner sc=new Scanner(System.in);
+          int b=sc.nextInt(),i;
+          for(i=0;i<b;i++){
+              System.out.println("enter the number");
+              int c=sc.nextInt();
+              q.add(c);
+          }
+          System.out.println("the queue is:");
+          for(i=0;i<b;i++){
+            System.out.println(q.front());
+            q.remove();
+          }
+		}}
+
+
+class Queue{
+	class node{
+		int key;
+		node left;
+		node right;
+		node(int key){
+			this.key=key;
+		}
+	}
+
+	node front;
+	node rear;
+	int size;
+
+	void add(int key){
+		if(front==null && rear==null)
+			front=rear=new node(key);
+		else{
+			node x=new node(key);
+			rear.right=x;
+			x.left=rear;
+			rear=x;
+		}
+		size++;
+	}
+	int front(){
+		return front.key;
+	}
+	void remove(){
+		if(size!=0){
+			if(size==1)
+				front=rear=null;
+			else{
+				front=front.right;
+				front.left=null;
+			}
+			size--;
+		}
+	}
+}
